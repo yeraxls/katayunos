@@ -3,3 +3,4 @@
 
 # Lista de katas
  -fizzbuzz
+-contarPalabras
