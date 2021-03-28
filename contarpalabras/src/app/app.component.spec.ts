@@ -25,11 +25,35 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.title).toEqual('contarpalabras');
   });
-
-  it('should render title', () => {
+  
+  it('separar texto', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('contarpalabras app is running!');
+    const app = fixture.componentInstance;
+    app._texto = "hola hola hola";
+    fixture.detectChanges();
+    var respuesta = app.palabrasSeparadas();
+    expect(respuesta.length).toBe(3);
+  });
+
+  it('normalizadas texto', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    app._texto = "hola! hola, hola.";
+    fixture.detectChanges();
+    var respuesta = app.palabrasSeparadas();
+    expect(!respuesta.includes("hola!")).toBe(true);
+  });
+
+  it('contar texto', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    let ejemplo = ["hola", "hola", "asd"];
+    app.iniciarCuenta(ejemplo);
+    fixture.detectChanges();
+    var respuesta = app.contador;
+    expect(respuesta.length).toBe(2);
   });
 });
